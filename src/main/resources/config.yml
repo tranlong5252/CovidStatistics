@@ -1,0 +1,27 @@
+##################################################################
+#                                                                #
+#             COVID-19 STATISTICS BY tranlong5252                #
+#                                                                #
+##################################################################
+
+delay: 3600 #second
+
+VNStats:
+  - ""
+  - "&f&lThông tin Covid-19 &e&lVIỆT NAM"
+  - "    &cSố ca nhiễm: &l{VNCases}"
+  - "    &7Tử vong: &f&l{VNDeaths}"
+  - "    &aĐã khỏi: &l{VNRecovered}"
+  - "    &eĐang điều trị: &l{VNRecovering}"
+  - "_______===&6({date_time})&r===_______"
+WStats:
+  - "&f&lThông tin Covid-19 &e&lTHẾ GIỚI"
+  - "    &cSố ca nhiễm: &l{WCases}"
+  - "    &7Tử vong: &f&l{WDeaths}"
+  - "    &aĐã khỏi: &l{WRecovered}"
+  - "    &eĐang điều trị: &l{WRecovering}"
+  - "&cHãy thực hiện thông điệp 5K của Bộ Y Tế"
+  - "&7Nguồn: &ohttps://ncov.moh.gov.vn/"
+sound:
+  enable: true
+  sound: "ENTITY_PLAYER_LEVELUP"

@@ -1,0 +1,11 @@
+name: Covid19statistics
+version: ${project.version}
+main: tranlong5252.covid19statistics.CovidStatistic
+api-version: 1.16
+prefix: CovidStatistic
+authors: [ tranlong5252 ]
+description: Thông tin về Covid 19
+softdepend: [PlaceholderAPI]
+commands:
+  covid:
+    aliases: [cv19]
