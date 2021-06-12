@@ -1,26 +1,78 @@
 package tranlong5252.covid19statistics.Config;
 
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.Plugin;
 import tranlong5252.covid19statistics.API.CvAPI;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.TreeMap;
 
 public class Data {
-    CvAPI api = new CvAPI();
-    boolean isNew = false;
+    private final File file;
+    private final Plugin plugin;
 
-    private final Map<String, String> data = new HashMap<String, String>(){{
-        put("VNCases",api.getVNCases());
-        put("VNDeaths",api.getVNDeaths());
-        put("VNRecovering",api.getVNRecovering());
-        put("VNRecovered",api.getVNRecovered());
-        put("WCases",api.getWCases());
-        put("WDeaths",api.getWDeaths());
-        put("WRecovering",api.getWRecovering());
-        put("WRecovered",api.getWRecovered());
-    }};
+    long VNCases, VNRecovering, VNRecovered, VNDeaths,
+            WCases, WRecovering, WRecovered, WDeaths;
+    private FileConfiguration DataConfig;
 
-    public Map<String, String> getData() {
-        return data;
+    public Data(Plugin plugin) {
+        this.plugin = plugin;
+        file = new File(plugin.getDataFolder(), "data.yml");
+        DataConfig = YamlConfiguration.loadConfiguration(file);
+    }
+
+    public void setData() {
+        CvAPI api = new CvAPI();
+        try {
+            TreeMap<String, Long> data= api.getMap();
+            VNCases = data.get("VNCases");
+            VNDeaths = data.get("VNDeaths");
+            VNRecovering = data.get("VNRecovering");
+            VNRecovered = data.get("VNRecovered");
+            WCases = data.get("WCases");
+            WDeaths = data.get("WDeaths");
+            WRecovering = data.get("WRecovering");
+            WRecovered = data.get("WRecovered");
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file.getAbsolutePath()));
+            writer.write("#Vui lòng không chỉnh sửa ở file này!" + "\n");
+            writer.write("\n");
+            writer.write("#DataVN:" + "\n");
+            writer.write("VNCases: " + VNCases + "\n");
+            writer.write("VNDeaths: " + VNDeaths + "\n");
+            writer.write("VNRecovering: " + VNRecovering + "\n");
+            writer.write("VNRecovered: " + VNRecovered + "\n");
+            writer.write("\n");
+            writer.write("#DataWorld:" + "\n");
+            writer.write("WCases: " + WCases + "\n");
+            writer.write("WDeaths: " + WDeaths + "\n");
+            writer.write("WRecovering: " + WRecovering + "\n");
+            writer.write("WRecovered: " + WRecovered + "\n");
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public FileConfiguration getDataFile() {
+        return this.DataConfig;
+    }
+
+    public void createDataFile() {
+        if (!file.exists()) {
+            file.getParentFile().mkdirs();
+            plugin.saveResource("data.yml", false);
+        }
+
+        DataConfig = new YamlConfiguration();
+        try {
+            DataConfig.load(file);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
     }
 }

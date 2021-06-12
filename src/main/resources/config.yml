@@ -1,24 +1,22 @@
-##################################################################
-#                                                                #
-#             COVID-19 STATISTICS BY tranlong5252                #
-#                                                                #
-##################################################################
-
+#a
+#a
+#           COVID-19 STATISTICS BY tranlong5252
+#a
+#a
 delay: 3600 #second
-
 VNStats:
   - ""
   - "&f&lThông tin Covid-19 &e&lVIỆT NAM"
-  - "    &cSố ca nhiễm: &l{VNCases}"
-  - "    &7Tử vong: &f&l{VNDeaths}"
-  - "    &aĐã khỏi: &l{VNRecovered}"
+  - "    &cSố ca nhiễm: &l{VNCases}&r &f({CVNCases}&f)"
+  - "    &7Tử vong: &f&l{VNDeaths} &f({CVNDeaths}&f)"
+  - "    &aĐã khỏi: &l{VNRecovered} &f({CVNRecovered}&f)"
   - "    &eĐang điều trị: &l{VNRecovering}"
   - "_______===&6({date_time})&r===_______"
 WStats:
   - "&f&lThông tin Covid-19 &e&lTHẾ GIỚI"
-  - "    &cSố ca nhiễm: &l{WCases}"
-  - "    &7Tử vong: &f&l{WDeaths}"
-  - "    &aĐã khỏi: &l{WRecovered}"
+  - "    &cSố ca nhiễm: &l{WCases} {CWCases}"
+  - "    &7Tử vong: &f&l{WDeaths} {CWDeaths}"
+  - "    &aĐã khỏi: &l{WRecovered} {CWRecovered}"
   - "    &eĐang điều trị: &l{WRecovering}"
   - "&cHãy thực hiện thông điệp 5K của Bộ Y Tế"
   - "&7Nguồn: &ohttps://ncov.moh.gov.vn/"

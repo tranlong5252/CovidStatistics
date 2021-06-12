@@ -5,7 +5,7 @@ api-version: 1.16
 prefix: CovidStatistic
 authors: [ tranlong5252 ]
 description: Thông tin về Covid 19
-softdepend: [PlaceholderAPI]
+softdepend: []
 commands:
   covid:
     aliases: [cv19]

@@ -1,27 +1,19 @@
 package tranlong5252.covid19statistics.API;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.scheduler.BukkitRunnable;
-import tranlong5252.covid19statistics.CovidStatistic;
-
 import javax.net.ssl.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.cert.X509Certificate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CvAPI {
-    CovidStatistic plugin = CovidStatistic.getMain();
-    ArrayList<String> WMsg = new ArrayList<>();
-    ArrayList<String> VNMsg = new ArrayList<>();
     private String VNCases, VNRecovering, VNRecovered, VNDeaths,
             WCases, WRecovering, WRecovered, WDeaths;
 
@@ -153,72 +145,21 @@ public class CvAPI {
         return VNCases;
     }
 
-    /**
-     * Setter
-     */
     public void setVNCases(String VNCases) {
         this.VNCases = VNCases;
     }
 
-    public void setVNMessage() throws Exception {
+    public TreeMap<String, Long> getMap() throws Exception {
         GetStatistics();
-        if (!VNMsg.isEmpty()) {
-            VNMsg.clear();
-        }
-        for (String s : plugin.getVNMessages()) {
-            s = ChatColor.translateAlternateColorCodes('&', s);
-            s = s.replace("{date_time}", getTimeNow())
-                    .replace("{VNCases}", getVNCases())
-                    .replace("{VNDeaths}", getVNDeaths())
-                    .replace("{VNRecovered}", getVNRecovered())
-                    .replace("{VNRecovering}", getVNRecovering());
-            VNMsg.add(s);
-        }
-    }
-
-    public void setWorldMessage() {
-        if (!WMsg.isEmpty()) {
-            WMsg.clear();
-        }
-        for (String s : plugin.getWorldMessages()) {
-            s = ChatColor.translateAlternateColorCodes('&', s);
-            s = s.replace("{date_time}", getTimeNow())
-                    .replace("{WCases}", getWCases())
-                    .replace("{WDeaths}", getWDeaths())
-                    .replace("{WRecovered}", getWRecovered())
-                    .replace("{WRecovering}", getWRecovering());
-            WMsg.add(s);
-        }
-    }
-
-    public void broadcast() throws Exception {
-        setVNMessage();
-        setWorldMessage();
-
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                VNMsg.forEach(Bukkit::broadcastMessage);
-                WMsg.forEach(Bukkit::broadcastMessage);
-                if (plugin.isSoundEnable()) {
-                    Bukkit.getOnlinePlayers().forEach((p) -> p.playSound(p.getLocation(), plugin.getSound(), 1, 1));
-                }
-            }
-        }.runTask(plugin);
-    }
-
-    private final Map<String, String> data = new HashMap<String, String>(){{
-        put("VNCases",getVNCases());
-        put("VNDeaths",getVNDeaths());
-        put("VNRecovering",getVNRecovering());
-        put("VNRecovered",getVNRecovered());
-        put("WCases",getWCases());
-        put("WDeaths",getWDeaths());
-        put("WRecovering",getWRecovering());
-        put("WRecovered",getWRecovered());
-    }};
-
-    public Map<String, String> getData() {
-        return data;
+        return new TreeMap<String, Long>() {{
+            put("VNCases", Long.parseLong(getVNCases().replaceAll("\\.", "")));
+            put("VNDeaths", Long.parseLong(getVNDeaths().replaceAll("\\.", "")));
+            put("VNRecovering", Long.parseLong(getVNRecovering().replaceAll("\\.", "")));
+            put("VNRecovered", Long.parseLong(getVNRecovered().replaceAll("\\.", "")));
+            put("WCases", Long.parseLong(getWCases().replaceAll("\\.", "")));
+            put("WDeaths", Long.parseLong(getWDeaths().replaceAll("\\.", "")));
+            put("WRecovering", Long.parseLong(getWRecovering().replaceAll("\\.", "")));
+            put("WRecovered", Long.parseLong(getWRecovered().replaceAll("\\.", "")));
+        }};
     }
 }
