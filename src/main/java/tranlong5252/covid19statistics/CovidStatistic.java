@@ -2,9 +2,7 @@ package tranlong5252.covid19statistics;
 
 import org.bukkit.Sound;
 import org.bukkit.plugin.java.JavaPlugin;
-import tranlong5252.covid19statistics.Config.Data;
 import tranlong5252.covid19statistics.Tasks.CVTasks;
-import tranlong5252.covid19statistics.Tasks.NewDataTasks;
 import tranlong5252.covid19statistics.commands.CVCmd;
 
 import java.util.List;
@@ -16,7 +14,6 @@ public final class CovidStatistic extends JavaPlugin {
     List<String> WStats, VNStats;
     boolean enable_sound;
     String broadcast_sound;
-    Data data = new Data(this);
 
     public static CovidStatistic getMain() {
     return main;
@@ -28,10 +25,7 @@ public final class CovidStatistic extends JavaPlugin {
         saveDefaultConfig();
         main = this;
         new CVTasks().runTaskTimerAsynchronously(this, 20, 20 * delay);
-        new NewDataTasks(this).runTaskTimerAsynchronously(this, 20, 20 * delay);
         getCommand("covid").setExecutor(new CVCmd(this));
-        data.createDataFile();
-        data.setData();
     }
 
     public void loadConfig() {

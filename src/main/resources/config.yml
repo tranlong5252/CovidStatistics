@@ -1,25 +1,20 @@
-#a
-#a
-#           COVID-19 STATISTICS BY tranlong5252
-#a
-#a
 delay: 3600 #second
 VNStats:
   - ""
   - "&f&lThông tin Covid-19 &e&lVIỆT NAM"
-  - "    &cSố ca nhiễm: &l{VNCases}&r {CVNCases}"
-  - "    &7Tử vong: &f&l{VNDeaths} {CVNDeaths}"
-  - "    &aĐã khỏi: &l{VNRecovered} {CVNRecovered}"
-  - "    &eĐang điều trị: &l{VNRecovering}"
+  - "    &cSố ca nhiễm: {VNCases}&r &f(&7{todayVNCases}&f)"
+  - "    &7Tử vong: {VNDeaths} &f(&7{todayVNDeaths}&f)"
+  - "    &aĐã khỏi: {VNRecovered} &f(&7{todayVNRecovered}&f)"
+  - "    &eĐang điều trị: {VNRecovering} &f({todayVNRecovering}&f)"
   - "_______===&6({date_time})&r===_______"
 WStats:
   - "&f&lThông tin Covid-19 &e&lTHẾ GIỚI"
-  - "    &cSố ca nhiễm: &l{WCases} {CWCases}"
-  - "    &7Tử vong: &f&l{WDeaths} {CWDeaths}"
-  - "    &aĐã khỏi: &l{WRecovered} {CWRecovered}"
-  - "    &eĐang điều trị: &l{WRecovering}"
+  - "    &cSố ca nhiễm: {WCases} &f(&7{todayWCases}&f)"
+  - "    &7Tử vong: {WDeaths} &f(&7{todayWDeaths}&f)"
+  - "    &aĐã khỏi: {WRecovered} &f(&7{todayWRecovered}&f)"
+  - "    &eĐang điều trị: {WRecovering} &f(&7{todayWRecovering}&f)"
   - "&cHãy thực hiện thông điệp 5K của Bộ Y Tế"
-  - "&7Nguồn: &ohttps://ncov.moh.gov.vn/"
+  - "&7Nguồn: &ohttps://covid19.gov.vn/"
 sound:
   enable: true
   sound: "ENTITY_PLAYER_LEVELUP"
