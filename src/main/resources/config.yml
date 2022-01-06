@@ -7,9 +7,9 @@ delay: 3600 #second
 VNStats:
   - ""
   - "&f&lThông tin Covid-19 &e&lVIỆT NAM"
-  - "    &cSố ca nhiễm: &l{VNCases}&r &f({CVNCases}&f)"
-  - "    &7Tử vong: &f&l{VNDeaths} &f({CVNDeaths}&f)"
-  - "    &aĐã khỏi: &l{VNRecovered} &f({CVNRecovered}&f)"
+  - "    &cSố ca nhiễm: &l{VNCases}&r {CVNCases}"
+  - "    &7Tử vong: &f&l{VNDeaths} {CVNDeaths}"
+  - "    &aĐã khỏi: &l{VNRecovered} {CVNRecovered}"
   - "    &eĐang điều trị: &l{VNRecovering}"
   - "_______===&6({date_time})&r===_______"
 WStats:
